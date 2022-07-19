@@ -1,0 +1,23 @@
+.imgDiv {
+  border: 1px solid black;
+}
+
+.displayHidden {
+  display: none;
+}
+
+.displayShown {
+  display: absolute;
+}
+
+#targetDiv {
+
+}
+
+#targetBox {
+
+}
+
+#targetList {
+  
+}
