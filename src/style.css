@@ -3,18 +3,25 @@
 }
 
 .displayHidden {
-  display: none;
 }
 
 .displayShown {
-  display: absolute;
 }
 
 #targetDiv {
+  border: 1px solid red;
+  width: 200px;
+  height: 100px;
 
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr;
 }
 
 #targetBox {
+  width: 90px;
+  height: 90px;
+  border: 5px solid black;
 
 }
 
