@@ -12,6 +12,7 @@
   border: 1px solid red;
   width: 200px;
   height: 100px;
+  position: absolute;
 
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -26,5 +27,6 @@
 }
 
 #targetList {
-  
+  color: white;
+  background-color: black;
 }
