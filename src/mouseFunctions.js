@@ -2,6 +2,7 @@ export async function clickTargetDisplay(e) {
   // coords of click
   let xPos = e.clientX;
   let yPos = e.clientY;
+  console.log(`${xPos}, ${yPos}`);
 
   const targetDisplay = document.getElementById("targetDiv");
   targetDisplay.parentNode.appendChild(targetDisplay);
