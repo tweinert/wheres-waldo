@@ -32,21 +32,33 @@ function createTargetDisplay() {
 
   const targetDiv = document.createElement("div");
   targetDiv.id = "targetDiv";
-  // TODO hide display initially
+  targetDiv.style.left = "5000px";
 
   const targetBox = document.createElement("div");
   targetBox.id = "targetBox";
 
   const targetList = document.createElement("div");
   targetList.id = "targetList";
-  // TODO list of people to find
+
+  // TODO show list based on whose been found
   const list = document.createElement("ul");
+
   const person1 = document.createElement("li");
   person1.textContent = "Waldo";
-  const person2 = document.createElement("li");
-  person2.textContent = "Wizard";
   list.appendChild(person1);
+
+  const person2 = document.createElement("li");
+  person2.textContent = "Wenda";
   list.appendChild(person2);
+
+  const person3 = document.createElement("li");
+  person3.textContent = "Odlaw";
+  list.appendChild(person3);
+
+  const person4 = document.createElement("li");
+  person4.textContent = "Wizard";
+  list.appendChild(person4);
+
   targetList.appendChild(list);
 
   targetDiv.appendChild(targetBox);
