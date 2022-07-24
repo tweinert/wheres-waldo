@@ -14,3 +14,10 @@ export async function clickTargetDisplay(e) {
     console.log("timer started");
   }, 3000);
 }
+
+function checkCharacterClick() {
+  /*
+  use helperFunctions.checkDistance to see
+  if click is near any of the character locations in the database  
+  */
+}
