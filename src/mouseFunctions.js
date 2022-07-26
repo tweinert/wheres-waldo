@@ -1,3 +1,7 @@
+import { initializeApp } from "firebase/app";
+import { getFirestore, collection, getDocs } from "firebase/firestore";
+import { getFirebaseConfig } from "./firebaseConfig";
+
 export async function clickTargetDisplay(e) {
   // coords of click
   let xPos = e.clientX;
@@ -9,15 +13,29 @@ export async function clickTargetDisplay(e) {
   targetDisplay.style.left = xPos - 50 + "px";
   targetDisplay.style.top = yPos - 50 + "px";
 
+  checkCharacterClick();
+
   setTimeout(() => {
     targetDisplay.style.left = "5000px";
-    console.log("timer started");
   }, 3000);
 }
 
-function checkCharacterClick() {
+async function checkCharacterClick() {
   /*
   use helperFunctions.checkDistance to see
   if click is near any of the character locations in the database  
   */
+  // TODO get locations from firebase database
+  // collection(locations) - document(waldo, wenda, odlaw, wizard) - fields(xPos, yPos)
+  const firebaseApp = initializeApp(getFirebaseConfig());
+  const db = getFirestore(firebaseApp);
+
+  const colRef = collection(db, "locations");
+  const docsSnap = await getDocs(colRef);
+
+  docsSnap.forEach(doc => {
+    console.log(doc.data());
+  });
+  
+  // TODO check click distance for each character location
 }
