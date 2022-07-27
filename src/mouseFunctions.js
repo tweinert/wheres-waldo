@@ -1,6 +1,7 @@
 import { initializeApp } from "firebase/app";
 import { getFirestore, collection, getDocs } from "firebase/firestore";
 import { getFirebaseConfig } from "./firebaseConfig";
+import { checkDistance } from "./helperFunctions";
 
 export async function clickTargetDisplay(e) {
   // coords of click
@@ -13,14 +14,14 @@ export async function clickTargetDisplay(e) {
   targetDisplay.style.left = xPos - 50 + "px";
   targetDisplay.style.top = yPos - 50 + "px";
 
-  checkCharacterClick();
+  getCharacterData(xPos, yPos);
 
   setTimeout(() => {
     targetDisplay.style.left = "5000px";
   }, 3000);
 }
 
-async function checkCharacterClick() {
+async function getCharacterData(xPos, yPos) {
   /*
   use helperFunctions.checkDistance to see
   if click is near any of the character locations in the database  
@@ -33,9 +34,33 @@ async function checkCharacterClick() {
   const colRef = collection(db, "locations");
   const docsSnap = await getDocs(colRef);
 
-  docsSnap.forEach(doc => {
-    console.log(doc.data());
+  docsSnap.forEach((doc) => {
+    checkCharacterClick(xPos, yPos, doc);
   });
-  
-  // TODO check click distance for each character location
+}
+
+function checkCharacterClick(xPos, yPos, doc) {
+  let charX = doc.get("xPos");
+  let charY = doc.get("yPos");
+
+  if (doc.id == "waldo") {
+    if (checkDistance(xPos, yPos, charX, charY, 30)) {
+      console.log("Waldo Clicked");
+    }
+  }
+  if (doc.id == "wenda") {
+    if (checkDistance(xPos, yPos, charX, charY, 30)) {
+      console.log("Wenda Clicked");
+    }
+  }
+  if (doc.id == "odlaw") {
+    if (checkDistance(xPos, yPos, charX, charY, 30)) {
+      console.log("Odlaw Clicked");
+    }
+  }
+  if (doc.id == "wizard") {
+    if (checkDistance(xPos, yPos, charX, charY, 30)) {
+      console.log("Wizard Clicked");
+    }
+  }
 }
