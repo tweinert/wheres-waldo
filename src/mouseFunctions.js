@@ -2,6 +2,7 @@ import { initializeApp } from "firebase/app";
 import { getFirestore, collection, getDocs } from "firebase/firestore";
 import { getFirebaseConfig } from "./firebaseConfig";
 import { checkDistance } from "./helperFunctions";
+import { setCharacterFound } from "./ui";
 
 export async function clickTargetDisplay(e) {
   // coords of click
@@ -26,8 +27,6 @@ async function getCharacterData(xPos, yPos) {
   use helperFunctions.checkDistance to see
   if click is near any of the character locations in the database  
   */
-  // TODO get locations from firebase database
-  // collection(locations) - document(waldo, wenda, odlaw, wizard) - fields(xPos, yPos)
   const firebaseApp = initializeApp(getFirebaseConfig());
   const db = getFirestore(firebaseApp);
 
@@ -40,12 +39,16 @@ async function getCharacterData(xPos, yPos) {
 }
 
 function checkCharacterClick(xPos, yPos, doc) {
+  // TODO place markers
+  // TODO track characters found
+
   let charX = doc.get("xPos");
   let charY = doc.get("yPos");
 
   if (doc.id == "waldo") {
     if (checkDistance(xPos, yPos, charX, charY, 30)) {
       console.log("Waldo Clicked");
+      setCharacterFound("Waldo");
     }
   }
   if (doc.id == "wenda") {

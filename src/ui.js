@@ -5,6 +5,13 @@ import WaldoImage from "./images/gobblingGluttons.jpg";
 import { clickTargetDisplay } from "./mouseFunctions";
 import "./style.css";
 
+
+// track found characters
+let isWaldoFound = false;
+let isWendaFound = false;
+let isOdlawFound = false;
+let isWizardFound = false;
+
 // initialize db
 const firebaseApp = initializeApp(getFirebaseConfig());
 const db = getFirestore(firebaseApp);
@@ -43,21 +50,31 @@ function createTargetDisplay() {
   // TODO show list based on whose been found
   const list = document.createElement("ul");
 
-  const person1 = document.createElement("li");
-  person1.textContent = "Waldo";
-  list.appendChild(person1);
+  if (!isWaldoFound) {
+    const listWaldo = document.createElement("li");
+    listWaldo.textContent = "Waldo";
+    list.appendChild(listWaldo);
+  }
 
-  const person2 = document.createElement("li");
-  person2.textContent = "Wenda";
-  list.appendChild(person2);
+  if (!isWendaFound) {
+    const listWenda = document.createElement("li");
+    listWenda.textContent = "Wenda";
+    list.appendChild(listWenda);
+  }
 
-  const person3 = document.createElement("li");
-  person3.textContent = "Odlaw";
-  list.appendChild(person3);
+  if (!isOdlawFound) {
+    const listOdlaw = document.createElement("li");
+    listOdlaw.textContent = "Odlaw";
+    list.appendChild(listOdlaw);
+  }
 
-  const person4 = document.createElement("li");
-  person4.textContent = "Wizard";
-  list.appendChild(person4);
+  if (!isWizardFound) {
+    const listWizard = document.createElement("li");
+    listWizard.textContent = "Wizard";
+    list.appendChild(listWizard);
+  }
+
+  // TODO list empty handler
 
   targetList.appendChild(list);
 
@@ -65,6 +82,54 @@ function createTargetDisplay() {
   targetDiv.appendChild(targetList);
 
   content.appendChild(targetDiv);
+}
+
+function refreshDisplayList() {
+  const targetList = document.getElementById("targetList");
+  const list = document.createElement("ul");
+
+  // remove current list elements
+  targetList.querySelector("ul").remove();
+
+  if (!isWaldoFound) {
+    const listWaldo = document.createElement("li");
+    listWaldo.textContent = "Waldo";
+    list.appendChild(listWaldo);
+  }
+
+  if (!isWendaFound) {
+    const listWenda = document.createElement("li");
+    listWenda.textContent = "Wenda";
+    list.appendChild(listWenda);
+  }
+
+  if (!isOdlawFound) {
+    const listOdlaw = document.createElement("li");
+    listOdlaw.textContent = "Odlaw";
+    list.appendChild(listOdlaw);
+  }
+
+  if (!isWizardFound) {
+    const listWizard = document.createElement("li");
+    listWizard.textContent = "Wizard";
+    list.appendChild(listWizard);
+  }
+
+  targetList.appendChild(list);
+}
+
+export function setCharacterFound(character) {
+  console.log(character);
+  if (character == "Waldo") {
+    isWaldoFound = true;
+    refreshDisplayList();
+  } else if (character == "Wenda") {
+    isWendaFound = true;
+  } else if (character == "Odlaw") {
+    isOdlawFound = true;
+  } else if (character == "Wizard") {
+    isWizardFound = true;
+  }
 }
 
 export function initializeWebsite() {
