@@ -3,6 +3,7 @@ import { getFirestore } from "firebase/firestore";
 import { getFirebaseConfig } from "./firebaseConfig";
 import WaldoImage from "./images/gobblingGluttons.jpg";
 import { clickTargetDisplay } from "./mouseFunctions";
+import { pad } from "./helperFunctions";
 import "./style.css";
 
 
@@ -11,6 +12,8 @@ let isWaldoFound = false;
 let isWendaFound = false;
 let isOdlawFound = false;
 let isWizardFound = false;
+
+let totalSeconds = 0;
 
 // initialize db
 const firebaseApp = initializeApp(getFirebaseConfig());
@@ -86,18 +89,28 @@ function createTargetDisplay() {
 
 function createTimer() {
   // TODO set timer here
+  setInterval(setTime, 1000);
 
   const timerDiv = document.createElement("div");
   timerDiv.id = "timerDiv";
 
   const timerText = document.createElement("p");
-  timerText.textContent = "10:00";
   timerText.id = "timerText";
+  timerText.textContent = "00:00";
 
   timerDiv.appendChild(timerText);
 
   const content = document.getElementById("content");
   content.appendChild(timerDiv);
+}
+
+function setTime() {
+  ++totalSeconds;
+  let currentSeconds = pad(totalSeconds % 60);
+  let currentMinutes = pad(parseInt(totalSeconds / 60));
+
+  const timerText = document.getElementById("timerText");
+  timerText.textContent = `${currentMinutes}:${currentSeconds}`;
 }
 
 function refreshDisplayList() {
