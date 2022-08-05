@@ -84,6 +84,22 @@ function createTargetDisplay() {
   content.appendChild(targetDiv);
 }
 
+function createTimer() {
+  // TODO set timer here
+
+  const timerDiv = document.createElement("div");
+  timerDiv.id = "timerDiv";
+
+  const timerText = document.createElement("p");
+  timerText.textContent = "10:00";
+  timerText.id = "timerText";
+
+  timerDiv.appendChild(timerText);
+
+  const content = document.getElementById("content");
+  content.appendChild(timerDiv);
+}
+
 function refreshDisplayList() {
   const targetList = document.getElementById("targetList");
   const list = document.createElement("ul");
@@ -125,14 +141,18 @@ export function setCharacterFound(character) {
     refreshDisplayList();
   } else if (character == "Wenda") {
     isWendaFound = true;
+    refreshDisplayList();
   } else if (character == "Odlaw") {
     isOdlawFound = true;
+    refreshDisplayList();
   } else if (character == "Wizard") {
     isWizardFound = true;
+    refreshDisplayList();
   }
 }
 
 export function initializeWebsite() {
   createImageDisplay();
   createTargetDisplay();
+  createTimer();
 }

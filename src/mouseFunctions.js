@@ -55,18 +55,21 @@ function checkCharacterClick(xPos, yPos, doc) {
   if (doc.id == "wenda") {
     if (checkDistance(xPos, yPos, charX, charY, 30)) {
       console.log("Wenda Clicked");
+      setCharacterFound("Wenda");
       createMarker(charX, charY);
     }
   }
   if (doc.id == "odlaw") {
     if (checkDistance(xPos, yPos, charX, charY, 30)) {
       console.log("Odlaw Clicked");
+      setCharacterFound("Odlaw");
       createMarker(charX, charY);
     }
   }
   if (doc.id == "wizard") {
     if (checkDistance(xPos, yPos, charX, charY, 30)) {
       console.log("Wizard Clicked");
+      setCharacterFound("Wizard");
       createMarker(charX, charY);
     }
   }
