@@ -49,21 +49,37 @@ function checkCharacterClick(xPos, yPos, doc) {
     if (checkDistance(xPos, yPos, charX, charY, 30)) {
       console.log("Waldo Clicked");
       setCharacterFound("Waldo");
+      createMarker(charX, charY);
     }
   }
   if (doc.id == "wenda") {
     if (checkDistance(xPos, yPos, charX, charY, 30)) {
       console.log("Wenda Clicked");
+      createMarker(charX, charY);
     }
   }
   if (doc.id == "odlaw") {
     if (checkDistance(xPos, yPos, charX, charY, 30)) {
       console.log("Odlaw Clicked");
+      createMarker(charX, charY);
     }
   }
   if (doc.id == "wizard") {
     if (checkDistance(xPos, yPos, charX, charY, 30)) {
       console.log("Wizard Clicked");
+      createMarker(charX, charY);
     }
   }
+}
+
+function createMarker(xPos, yPos) {
+  let marker = document.createElement("span");
+
+  marker.classList.add("marker");
+
+  marker.style.left = `${xPos - 25}px`;
+  marker.style.top = `${yPos - 25}px`;
+
+  const content = document.getElementById("content");
+  content.appendChild(marker);
 }
